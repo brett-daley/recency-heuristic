@@ -1,2 +1,5 @@
+gymnasium
+gym-classics
 matplotlib
 numpy
+pyyaml
