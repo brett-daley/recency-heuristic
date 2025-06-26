@@ -1,10 +1,9 @@
 import math
-import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
 
-from plotting import save, set_plot_size
+from utils import save, set_plot_size
 
 
 def get_sparse_lambda_func(lambd, m):
@@ -55,12 +54,12 @@ def main(discount=1.0):
     plt.legend(loc="upper right")
 
     set_plot_size()
-    name = f"td-error_weights"
-    directory = 'plots'
+    name = 'eligibility'
+    directory = 'figures'
     save(name, directory, pdf=False)
     save(name, directory, pdf=True)
 
 
 if __name__ == '__main__':
-    plt.style.use('custom.mplstyle')
+    plt.style.use('styles/lineplot.mplstyle')
     main()
