@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numpy.linalg import matrix_power
 
-from plotting import save, set_plot_size
+from plotting.utils import save, set_plot_size
 
 
 def quiver(operator, x, y):
@@ -41,8 +41,8 @@ if __name__ == '__main__':
     x = y = np.linspace(-1.5, 1.5, 12)
     quiver(operator, x, y)
 
-    plt.xlabel("$v_0(s_1)$")
-    plt.ylabel("$v_0(s_2)$")
+    plt.xlabel("$v(s_1)$")
+    plt.ylabel("$v(s_2)$")
     plt.xlim([-1.6, 1.6])
     plt.ylim([-1.6, 1.6])
 

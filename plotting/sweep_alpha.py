@@ -6,8 +6,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
-from plotting import save, set_plot_size
-from summarize import calculate_auc
+from utils import calculate_auc, save, set_plot_size
 
 
 def alpha_sweep(input_dir, output_dir, alpha_values, patterns, labels, colors, use_ylabel=True, name=None):
@@ -49,7 +48,7 @@ def alpha_sweep(input_dir, output_dir, alpha_values, patterns, labels, colors, u
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('input_dir', type=str)
-    parser.add_argument('--output-dir', type=str, default='plots')
+    parser.add_argument('--output-dir', type=str, default='figures')
     args = parser.parse_args()
 
     matplotlib.style.use('custom.mplstyle')
@@ -80,48 +79,23 @@ if __name__ == '__main__':
             # f"alpha-{{alpha}}_estimator-lambda_0.8.npy",
             # f"alpha-{{alpha}}_estimator-lambda_0.9.npy",
             # 
-            # f"alpha-{{alpha}}_estimator-strong_0.npy",
-            # f"alpha-{{alpha}}_estimator-strong_0.667.npy",
-            # f"alpha-{{alpha}}_estimator-strong_1.npy",
-            # 
             f"alpha-{{alpha}}_estimator-trunc_0.99_10.npy",
             f"alpha-{{alpha}}_estimator-trunc_0.92_20.npy",
             f"alpha-{{alpha}}_estimator-lambda_0.9.npy",
-
-            # f"alpha-{{alpha}}_estimator-lambda_0.5.npy",
-            # f"alpha-{{alpha}}_estimator-wrh_0.3344.npy",
-            # f"alpha-{{alpha}}_estimator-lambda_0.67.npy",
-            # f"alpha-{{alpha}}_estimator-wrh_0.505.npy",
-            # f"alpha-{{alpha}}_estimator-lambda_0.8.npy",
-            # f"alpha-{{alpha}}_estimator-wrh_0.6679.npy",
-            # f"alpha-{{alpha}}_estimator-wrh_0.8188.npy",
-            # f"alpha-{{alpha}}_estimator-wrh_0.7518.npy",
-            # f"alpha-{{alpha}}_estimator-wrh_0.6473.npy",
-            # f"alpha-{{alpha}}_estimator-wrh_0.6968.npy",
             # 
             # f"alpha-{{alpha}}_estimator-lambda_0.9.npy",
             # f"alpha-{{alpha}}_estimator-space_3_0.7518.npy",
             # f"alpha-{{alpha}}_estimator-space_5_0.6473.npy",
-            # 
-            # f"alpha-{{alpha}}_estimator-pulse_1.npy",
-            # f"alpha-{{alpha}}_estimator-pulse_2.npy",
-            # f"alpha-{{alpha}}_estimator-pulse_3.npy",
         ],
         labels=[
-            # "delay = 0",
-            # "delay = 1",
-            # "delay = 2",
-            # 
-            "$\lambda=0.99$, $N=10$",
-            "$\lambda=0.92$, $N=20$",
-            "$\lambda=0.9$, $N=\infty$",
+            "$\lambda=0.99$, $L=10$",
+            "$\lambda=0.92$, $L=20$",
+            "$\lambda=0.9$, $L=\infty$",
             # 
             # "$m=1$",
             # "$m=3$",
             # "$m=5$",
         ],
-        # colors=['#2980b9', '#8e44ad', 'green', 'red', 'orange', 'black', 'magenta', 'cyan'],
-        # colors=['black', '#2980b9', 'green', 'red', 'black', 'magenta', 'cyan'],
         # colors=['#2980b9', '#27ae60', '#c0392b'],
         colors=['#3498db', '#8e44ad', 'black'],
         use_ylabel=(0 == 0),
