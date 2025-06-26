@@ -13,11 +13,11 @@ def get_sparse_lambda_func(lambd, m):
     return sparse_lambda
 
 
-def get_trunc_lambda_func(lambd, N):
-    assert N >= 1
+def get_trunc_lambda_func(lambd, L):
+    assert L >= 1
     def trunc_lambda(i):
         assert i >= 0
-        if i < N:
+        if i < L:
             return pow(lambd, i)
         else:
             return 0.0
@@ -36,9 +36,9 @@ def main(discount=1.0):
         (get_sparse_lambda_func(lambd=0.6473, m=5), '#c0392b', "$m=5$"),
     ]
     # curves = [
-    #     (get_trunc_lambda_func(lambd=0.99, N=10), '#3498db', "$\lambda=0.99$, $N=10$"),
-    #     (get_trunc_lambda_func(lambd=0.92, N=20), '#8e44ad', "$\lambda=0.92$, $N=20$"),
-    #     (get_sparse_lambda_func(lambd=0.9, m=1), 'black', "$\lambda=0.9$, $N=\infty$"),
+    #     (get_trunc_lambda_func(lambd=0.99, L=10), '#3498db', "$\lambda=0.99$, $L=10$"),
+    #     (get_trunc_lambda_func(lambd=0.92, L=20), '#8e44ad', "$\lambda=0.92$, $L=20$"),
+    #     (get_sparse_lambda_func(lambd=0.9, m=1), 'black', "$\lambda=0.9$, $L=\infty$"),
     # ]
 
     for weight_func, color, label in curves:

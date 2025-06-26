@@ -88,9 +88,9 @@ if __name__ == '__main__':
             # f"alpha-{{alpha}}_estimator-space_5_0.6473.npy",
         ],
         labels=[
-            "$\lambda=0.99$, $N=10$",
-            "$\lambda=0.92$, $N=20$",
-            "$\lambda=0.9$, $N=\infty$",
+            "$\lambda=0.99$, $L=10$",
+            "$\lambda=0.92$, $L=20$",
+            "$\lambda=0.9$, $L=\infty$",
             # 
             # "$m=1$",
             # "$m=3$",
