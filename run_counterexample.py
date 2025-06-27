@@ -41,8 +41,8 @@ if __name__ == '__main__':
     x = y = np.linspace(-1.5, 1.5, 12)
     quiver(operator, x, y)
 
-    plt.xlabel("$V(s_1)$")
-    plt.ylabel("$V(s_2)$")
+    plt.xlabel("$v(s_1)$")
+    plt.ylabel("$v(s_2)$")
     plt.xlim([-1.6, 1.6])
     plt.ylim([-1.6, 1.6])
 
