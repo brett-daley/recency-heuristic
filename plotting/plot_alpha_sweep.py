@@ -1,4 +1,3 @@
-from argparse import ArgumentParser
 from functools import partial
 import os
 
@@ -6,12 +5,10 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
-from utils import calculate_auc, save, set_plot_size
+from plotting.utils import calculate_auc, save, set_plot_size
 
 
 def alpha_sweep(input_dir, output_dir, alpha_values, patterns, labels, colors, use_ylabel=True, name=None):
-    plt.figure()
-
     for p, label, color in zip(patterns, labels, colors):
         p = os.path.join(input_dir, p)
 
@@ -42,16 +39,20 @@ def alpha_sweep(input_dir, output_dir, alpha_values, patterns, labels, colors, u
 
     set_plot_size(aspect=1)
     plt.legend(loc="best")
-    save(name, output_dir, pdf=False)
+    for pdf in [False, True]:
+        save(name, output_dir, pdf)
 
 
-if __name__ == '__main__':
-    parser = ArgumentParser()
-    parser.add_argument('input_dir', type=str)
-    parser.add_argument('--output-dir', type=str, default='figures')
-    args = parser.parse_args()
-
-    matplotlib.style.use('custom.mplstyle')
+def main(
+        patterns,
+        labels,
+        colors,
+        name,
+        input_dir,
+        output_dir='figures',
+    ):
+    matplotlib.style.use('styles/lineplot.mplstyle')
+    plt.figure()
 
     alpha_values = [
         0.0067, 0.0074, 0.0082, 0.0091, 0.0101, 0.0111, 0.0123, 0.0136, 0.015, 0.0166,
@@ -60,44 +61,11 @@ if __name__ == '__main__':
         0.1353, 0.1496, 0.1653, 0.1827, 0.2019, 0.2231, 0.2466, 0.2725, 0.3012, 0.3329,
         0.3679, 0.4066, 0.4493, 0.4966, 0.5488, 0.6065, 0.6703, 0.7408, 0.8187, 0.9048, 1]
 
-    plot_func = partial(alpha_sweep, args.input_dir, args.output_dir, alpha_values)
-
+    plot_func = partial(alpha_sweep, input_dir, output_dir, alpha_values)
     plot_func(
-        patterns=[
-            # f"alpha-{{alpha}}_estimator-nstep_1.npy",
-            # f"alpha-{{alpha}}_estimator-nstep_2.npy",
-            # f"alpha-{{alpha}}_estimator-nstep_3.npy",
-            # f"alpha-{{alpha}}_estimator-nstep_4.npy",
-            # f"alpha-{{alpha}}_estimator-nstep_5.npy",
-            # f"alpha-{{alpha}}_estimator-nstep_6.npy",
-            # f"alpha-{{alpha}}_estimator-nstep_7.npy",
-            # f"alpha-{{alpha}}_estimator-nstep_8.npy",
-            # f"alpha-{{alpha}}_estimator-nstep_10.npy",
-            # f"alpha-{{alpha}}_estimator-lambda_0.5.npy",
-            # f"alpha-{{alpha}}_estimator-lambda_0.6.npy",
-            # f"alpha-{{alpha}}_estimator-lambda_0.7.npy",
-            # f"alpha-{{alpha}}_estimator-lambda_0.8.npy",
-            # f"alpha-{{alpha}}_estimator-lambda_0.9.npy",
-            # 
-            f"alpha-{{alpha}}_estimator-trunc_0.99_10.npy",
-            f"alpha-{{alpha}}_estimator-trunc_0.92_20.npy",
-            f"alpha-{{alpha}}_estimator-lambda_0.9.npy",
-            # 
-            # f"alpha-{{alpha}}_estimator-lambda_0.9.npy",
-            # f"alpha-{{alpha}}_estimator-space_3_0.7518.npy",
-            # f"alpha-{{alpha}}_estimator-space_5_0.6473.npy",
-        ],
-        labels=[
-            "$\lambda=0.99$, $L=10$",
-            "$\lambda=0.92$, $L=20$",
-            "$\lambda=0.9$, $L=\infty$",
-            # 
-            # "$m=1$",
-            # "$m=3$",
-            # "$m=5$",
-        ],
-        # colors=['#2980b9', '#27ae60', '#c0392b'],
-        colors=['#3498db', '#8e44ad', 'black'],
-        use_ylabel=(0 == 0),
-        name=f"rw19_super"
+        patterns,
+        labels,
+        colors,
+        use_ylabel=True,
+        name=name,
     )
