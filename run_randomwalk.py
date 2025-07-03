@@ -7,8 +7,8 @@ gym_classics.register('gymnasium')
 import numpy as np
 
 import cmdline
-import return_estimators as returns
-from dynamic_programming import policy_evaluation
+import learning.return_estimators as returns
+from learning.dynamic_programming import policy_evaluation
 
 
 def main(**kwargs):  # Hook for automation
