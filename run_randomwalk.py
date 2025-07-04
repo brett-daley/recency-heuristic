@@ -40,14 +40,16 @@ def run(estimator: str, alpha: float, seed: int, verbose: bool = False):
     env = gym.make(env_id)
     env.action_space.seed(seed)
 
-    if not os.path.exists('walk.npy'):
+    os.makedirs("cache", exist_ok=True)
+    cache_path = os.path.join("cache", f"{env_id}_discount-{discount}.npy")
+    if not os.path.exists(cache_path):
         n = env.action_space.n
         behavior_policy = lambda s: np.ones(n) / n
         # NOTE: This only works for gym-classics environments
         V_pi = policy_evaluation(env, discount, behavior_policy, precision=1e-9)
-        np.save('walk', V_pi)
+        np.save(cache_path, V_pi)
     else:
-        V_pi = np.load('walk.npy')
+        V_pi = np.load(cache_path)
 
     V = np.zeros(env.observation_space.n)
 

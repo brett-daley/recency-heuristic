@@ -1,13 +1,16 @@
+import argparse
 import subprocess
 
 from plotting import plot_alpha_sweep, plot_eligibility
 from plotting.plot_eligibility import get_sparse_lambda_func, get_trunc_lambda_func
 
 
-INPUT_DIR = 'results'
-
-
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--directory', type=str, default='results')
+    args = parser.parse_args()
+
+
     ### Figure 2 (right)
     subprocess.run("python run_counterexample.py", shell=True)
 
@@ -41,7 +44,7 @@ if __name__ == '__main__':
             '#c0392b',
         ],
         name='rw19_sparse',
-        input_dir=INPUT_DIR,
+        input_dir=args.directory,
     )
 
 
@@ -74,5 +77,5 @@ if __name__ == '__main__':
             'black',
         ],
         name='rw19_trunc',
-        input_dir=INPUT_DIR,
+        input_dir=args.directory,
     )

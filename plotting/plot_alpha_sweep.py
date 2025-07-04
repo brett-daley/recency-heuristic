@@ -35,7 +35,7 @@ def alpha_sweep(input_dir, output_dir, alpha_values, patterns, labels, colors, u
         plt.ylabel(" ")
 
     plt.xlim([0, 1])
-    plt.ylim([0.25, 0.55])
+    plt.ylim([0.2, 0.5])
 
     set_plot_size(aspect=1)
     plt.legend(loc="best")
